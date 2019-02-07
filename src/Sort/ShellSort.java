@@ -10,7 +10,7 @@ import static java.lang.System.currentTimeMillis;
 public class ShellSort extends Sort{
 
     // 将data[]按升序排列
-    private void sort(Comparable[] data) {
+    public void sort(Comparable[] data) {
         int N = data.length;
         int h = 1;
         while (h < N/3)
