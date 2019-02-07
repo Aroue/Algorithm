@@ -5,19 +5,27 @@ import java.io.File;
 import static FileUtil.ReadFileToArray.ReadFile;
 import static java.lang.System.currentTimeMillis;
 
-public class Selection<T extends Comparable<T>> extends Sort<T> {
+
+// 希尔排序
+public class ShellSort extends Sort{
 
     // 将data[]按升序排列
     private void sort(Comparable[] data) {
-        int N = data.length; // 数组长度
-
-        // 将data[i]和data[i+1..N]中最小的元素交换
-        for (int i = 0; i < N; i++)
+        int N = data.length;
+        int h = 1;
+        while (h < N/3)
+            h = 3 * h + 1; // 1, 4, 13, 40, 121, 364, 1093, ...
+        while (h >= 1)
         {
-            int min = i; // 最小元素的索引
-            for (int j = i+1; j < N; j++)
-                if (less(data[j], data[min])) min = j;
-            exch(data, i, min);
+            // 将数组变为h有序
+            for (int i = h; i < N; i++)
+            {
+                // 将data[i]插入到data[i-h], data[i-2*h], data[i-3*h]... 之中
+                for (int j = i; j >= h && less(data[j], data[j-h]); j -= h)
+                    exch(data, j, j-h);
+            }
+
+            h = h/3;
         }
     }
 
@@ -25,8 +33,8 @@ public class Selection<T extends Comparable<T>> extends Sort<T> {
         File file = new File("data.txt");
         Comparable[] data = ReadFile(file);
         long start = currentTimeMillis();
-        Selection selectionSort = new Selection();
-        selectionSort.sort(data);
+        ShellSort shellSort = new ShellSort();
+        shellSort.sort(data);
         long end = currentTimeMillis();
         for (Comparable intNumber: data) {
             System.out.print(intNumber + " ");
@@ -34,5 +42,4 @@ public class Selection<T extends Comparable<T>> extends Sort<T> {
         System.out.println();
         System.out.println(end - start + " ms");
     }
-
 }

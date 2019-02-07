@@ -1,5 +1,6 @@
 package Sort;
 
+// 排序算法抽象类
 public abstract class Sort<T extends Comparable<T>> {
     // 返回两个数中较小的数
     boolean less(Comparable v, Comparable w)

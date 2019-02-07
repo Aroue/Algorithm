@@ -5,11 +5,11 @@ import java.io.File;
 import static FileUtil.ReadFileToArray.ReadFile;
 import static java.lang.System.currentTimeMillis;
 
+// 冒泡排序
 public class BubbleSort extends Sort {
 
     private static Comparable[] data;
 
-    // 冒泡排序
     private void sort() {
         int N = data.length;
         boolean isSorted = false;
