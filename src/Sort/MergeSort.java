@@ -9,7 +9,7 @@ public class MergeSort extends Sort {
 
     private static Comparable[] aux; // 归并所需的辅助数组
 
-    public static void sort(Comparable[] a) {
+    private static void sort(Comparable[] a) {
         aux = new Comparable[a.length]; // 一次性分配空间
         sort(a, 0, a.length - 1);
     }
@@ -46,6 +46,7 @@ public class MergeSort extends Sort {
         Comparable[] data = ReadFile(file);
         long start = currentTimeMillis();
         sort(data);
+//        merge(data,0,data.length / 2,data.length);
         long end = currentTimeMillis();
         for (Comparable intNumber: data) {
             System.out.print(intNumber + " ");
