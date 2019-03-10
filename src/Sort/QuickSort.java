@@ -14,7 +14,8 @@ public class QuickSort extends Sort {
         sort(a, lo, j-1);  // 将左半部分a[lo .. j-1]排序
         sort(a, j+1, hi);  // 将右半部分a[j+1 .. hi]排序
     }
-    public static int partition(Comparable[] a, int lo, int hi) {
+    // 快速排序的切分
+    private static int partition(Comparable[] a, int lo, int hi) {
         int i = lo, j = hi + 1;
         Comparable v = a[i];
         while (true) { // 扫描左右，检查扫描是否结束并交换元素
