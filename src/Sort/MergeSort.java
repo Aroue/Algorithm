@@ -11,9 +11,11 @@ public class MergeSort extends Sort {
 
     private static void sort(Comparable[] a) {
         aux = new Comparable[a.length]; // 一次性分配空间
-        sort(a, 0, a.length - 1);
+//        sort(a, 0, a.length - 1);
+        MergeBu.sort(a);
     }
 
+    // 自顶向下的归并排序
     private static void sort(Comparable[] a, int lo, int hi) { // 将数组a[lo..hi]排序
         if (hi <= lo) return;
         int mid = lo + (hi - lo) / 2;
@@ -22,7 +24,9 @@ public class MergeSort extends Sort {
         merge(a, lo, mid, hi); // 归并结果(代码见“原地归并的抽象方法”)
     }
 
-    private static void merge(Comparable[] a, int lo, int mid, int hi) {
+
+    // 原地归并的抽象方法
+    public static void merge(Comparable[] a, int lo, int mid, int hi) {
 
         // 将a[lo..mid] 和 a[mid+1..hi] 归并
         int i = lo, j = mid + 1;
