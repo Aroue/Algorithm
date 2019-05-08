@@ -12,6 +12,8 @@ public class Test {
         Comparable[] a = ReadFile(file);
         long startTime = currentTimeMillis();
         QuickSort.sort(a);
+        HeapSort heapSort = new HeapSort();
+        heapSort.sort(a);
         long endTime = currentTimeMillis();
         for (Comparable intNumber: a) {
             System.out.print(intNumber + " ");
