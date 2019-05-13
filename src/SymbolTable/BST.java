@@ -1,10 +1,11 @@
 package SymbolTable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BST<Key extends Comparable<Key>, Value> implements OrderedST<Key, Value> {
 
-    protected Node root;
+    private Node root;
 
     protected class Node {
         Key key;
@@ -110,11 +111,27 @@ public class BST<Key extends Comparable<Key>, Value> implements OrderedST<Key, V
 
     @Override
     public List<Key> keys(Key l, Key h) {
-        return null;
+        return keys(root, l, h);
+    }
+
+    private List<Key> keys(Node x, Key l, Key h) {
+        List<Key> list = new ArrayList<>();
+        if (x == null)
+            return list;
+        int cmpL = l.compareTo(x.key);
+        int cmpH = h.compareTo(x.key);
+        if (cmpL < 0)
+            list.addAll(keys(x.left, l, h));
+        if (cmpL <= 0 && cmpH >= 0)
+            list.add(x.key);
+        if (cmpH > 0)
+            list.addAll(keys(x.right, l, h));
+        return list;
     }
 
 
-    protected void recalculateSize(Node x) {
+
+    private void recalculateSize(Node x) {
         x.N = size(x.left) + size(x.right) + 1;
     }
 }
